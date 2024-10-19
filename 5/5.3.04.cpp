@@ -2,6 +2,11 @@
 #include "SandQBase.h"
 using namespace std;
 
+//复习普通层次遍历
+void ReviewLevelTra(BiTree T) {
+
+}
+
 //自下而上 从右到左的层次遍历
 void NewLevelTraverse(BiTree T) {
     BiTNode* p = T;

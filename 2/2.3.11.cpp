@@ -22,4 +22,14 @@ int isSymmetry(DoubleList L) {
     return true;
 }
 //认为len==1时，链表对称。
+int isSymmetry(DoubleList L) {
+    LNode* head = L->next;
+    LNode* tail = L->prior;
 
+    while (head != tail && head->prior != tail) {
+        if (head->val != tail->val) return 0;
+        head = head->next;
+        tail = tail->prior;
+    }
+    return 1;
+}

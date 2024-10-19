@@ -7,21 +7,21 @@ using namespace std;
 //拓扑排序的实现
 bool ToplogicalSort(ALGraph G) {
     InitStack(S);
-    int indegree[MaxVertexNum];
+    int indegree[MaxVertexNum];//这里面已经输入各个顶点的入度。
     int print[MaxVertexNum];
 
-    //把初始已经无入度的点压栈。
+    //把初始无入度的点压栈。
     for (int i = 0;i < G.vexnum;i++) {
         if (indegree[i] == 0) {
             Push(S, i);
         }
     }
 
-    int cnt = 0;
+    int cnt = 0;//和print[]一起使用，用来存储待打印的点
 
     while (!IsEmpty(S)) {
         Pop(S, i);//出栈表示已访问；已访问则可以删除
-        print[cnt++] = i;
+        print[cnt++] = i;//出口删除
 
         for (ArcNode* p = G.vertices[i].firstarc;p;p = p->nextarc) {
             int v = p->adjvex;
@@ -34,6 +34,33 @@ bool ToplogicalSort(ALGraph G) {
 
     if (cnt < G.vexnum) return false;
     return true;
+}
+
+bool myAns(ALGraph G) {
+    InitStack(S);
+    int cnt = 0;
+    int inDegree[MaxVertexNum];//这里是已经有内容了的。
+    int print[MaxVertexNum];
+
+    for (int i = 0;i < MaxVertexNum;i++) {
+        if (inDegree[i] == 0) {
+            Push(S, i);
+        }
+    }
+
+    while (!IsEmpty(S)) {
+        Pop(S, p);
+        print[cnt++] = p;
+        for (w = FirstNeighbor(G, p);w >= 0;w = NextNeighbor(G, p, w)) {
+            inDegree[w]--;
+            if (inDegree[w] == 0) {
+                Push(S, w);
+            }
+        }
+    }
+
+    if (cnt < MaxVertexNum) return false;
+    else return true;
 }
 
 

@@ -9,9 +9,9 @@ typedef struct BSTNode {
 //递归实现
 BSTNode* BST_Search(BiTree T, int x) {
     if (T != NULL) {
-        if (x == T->left->data) return T;
-        else if (x < T->left->data) BST_Search(T->left, x);
-        else if (x > T->left->data) BST_Search(T->right, x);
+        if (x == T->data) return T;
+        else if (x < T->data) BST_Search(T->left, x);
+        else if (x > T->data) BST_Search(T->right, x);
     }
 }
 
@@ -25,8 +25,7 @@ BSTNode* BST_Search(BiTree T, int x) {
     return T;
 }
 
-//二叉排序树的普通插入
-//注意这里传入的是引用！！这里不传入引用函数不能运行！！
+//排序树插入
 int BST_Insert(BiTree& T, int x) {
     //如果为空
     if (!T) {

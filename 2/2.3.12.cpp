@@ -16,3 +16,12 @@ void LinkTwoCircle(LinkList h1, LinkList h2) {
     h2->next = h1Head;
     h1->next = h2Head;
 }
+
+void MergeTwoLinkList(LinkList l1, LinkList l2) {
+    LNode* p1 = l1->next;
+    LNode* p2 = l2->next;
+
+    l1->next = p2;
+    l2->next = p1;
+
+}

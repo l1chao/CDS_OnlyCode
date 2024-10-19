@@ -28,3 +28,28 @@ LNode* Locate(LinkList L, int x) {
 
     return p;
 }
+
+
+
+LNode* Locate(LinkList L, int x) {
+    LNode* p = L->next;
+    while (p != NULL && p->val != x)
+        p = p->next;
+
+    LNode* temp = p;
+    p->prior->next = temp->next;
+    p->next->prior = temp->prior; //无问题
+    temp->freq++;
+    p = temp->prior;
+
+    while (p != L && p->freq < 3) {
+        p = p->prior;
+    }
+
+    temp->next = p->next;
+    temp->prior = p;
+    p->next->prior = temp;
+    p->next = temp;
+
+    return temp;
+}
