@@ -26,3 +26,21 @@ bool IsMatched(char a[]) {
     else return false;
 }
 
+//一路排除掉。具体操作没有说就别管。（栈相关）
+bool IsMatched(char a[]) {
+    InitStack(S);
+    for (int i = 0;a[i] != '\0';i++) {
+        if (a[i] == '(' || a[i] == '[' || a[i] == '{') Push(&S, a[i]);
+
+        if (IsEmpty(S)) return false;
+
+        char temp = a[i];
+        Pop(&S, &temp);
+        if (a[i] == ')' && temp != '(' ||
+            a[i] == ']' && temp != '[' ||
+            a[i] == '}' && temp != '{')
+            return false;
+    }
+    if (!IsEmpty(S)) return false;
+    return true;
+}

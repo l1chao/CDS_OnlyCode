@@ -6,7 +6,7 @@ typedef struct LNode {
     struct LNode* next;
 }LNode, * LinkList;
 
-//无序表删除特值
+//无序表删除特值的
 bool Del(LinkList L, int floor, int ceiling) {
     LNode* p = L;
     while (p->next != NULL) {
