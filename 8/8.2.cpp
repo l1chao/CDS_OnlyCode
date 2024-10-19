@@ -6,14 +6,18 @@ typedef int Elemtype;
 //直接插入排序
 void InsertSort(Elemtype A[], int n) {//记得要穿入数组长度n，C++和C里面都是如此
     int i, j;
-    for (i = 2;i < n;i++) {
+    for (i = 2; i < n; i++) {
         if (A[i] < A[i - 1]) {
             A[0] = A[i];
-            for (j = i - 1;A[j] > A[0];j--)
+            for (j = i - 1; A[j] > A[0]; j--)
                 A[j + 1] = A[j];
-            A[j + 1] = A[0];//2,4,6,5来验证一遍
+            A[j + 1] = A[0]; //2,4,6,5来验证一遍
         }
     }
+}
+
+void InsertionSort(Elemtype A[], int n) {
+
 }
 
 
