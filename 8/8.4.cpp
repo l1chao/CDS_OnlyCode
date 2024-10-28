@@ -29,7 +29,7 @@ void SelectSort(ElemType A[], int n) {
 void HeadAdjust1(ElemType A[], int len, int k) {
     A[0] = A[k]; //如果需要不断调整（不断下沉），可以最后调整，而不是两两调整。
     for (int i = 2 * k;i <= len;i *= 2) {
-        if (i < len && A[i] < A[i + 1])i++;//找到k的较大孩子，让i指向它。此后父是k，子是i。
+        if (i < len&& A[i] < A[i + 1])i++;//找到k的较大孩子，让i指向它。此后父是k，子是i。
         if (A[0] >= A[i]) break; //如果此时父节点已经大于两个孩子，单点调整结束。
         else {//这里的else可以省略
             A[k] = A[i];//把孩子节点上移。
@@ -39,16 +39,9 @@ void HeadAdjust1(ElemType A[], int len, int k) {
     A[k] = A[0];//要么break要么叶节点。i=空才知道k是叶节点。
 }
 
-<<<<<<< HEAD
 void BuildMaxHeap(ElemType A[], int len) {//A开始时无序。调整所有的分支节点。叶节点不用调整。
     for (int i = len / 2;i > 0;i--) {
         HeadAdjust(A, i, len);
-=======
-//将一个乱序数组变成大根堆
-void BuildMaxHeap1(ElemType A[], int len) {
-    for (int i = len / 2;i >= 1;i--) {
-        HeadAdjust1(A, len, i);
->>>>>>> origin/HEAD
     }
 }
 
