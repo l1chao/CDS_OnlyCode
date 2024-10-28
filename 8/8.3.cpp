@@ -29,14 +29,15 @@ void BubbleSort(ElemType A[], int n) {
 int Partition(ElemType A[], int low, int high) {
     ElemType pivot = A[low];
     int i = low, j = high;
-    while (low < high) {
-        while (low<high && A[j]>pivot) j--;
+    while (i < j) {
+        while (i < j && A[j] >= pivot)j--;//先是右边往左边移动，因为左边缺一个（在pivot里面）
         A[i] = A[j];
-        while (low < high && A[i] < pivot)i++;
+        while (i < j && A[i] <= pivot)i++;
         A[j] = A[i];
-    }
-    A[low] = pivot;
-    return low;
+    }//i==j的时候退出循环。
+
+    A[i] = pivot;
+    return i;
 }
 
 void QuickSort(ElemType A[], int low, int high) {
@@ -45,4 +46,33 @@ void QuickSort(ElemType A[], int low, int high) {
         QuickSort(A, low, pivotpos - 1);
         QuickSort(A, pivotpos + 1, high);
     }
+}
+
+//一体版
+void QuickSort_whole(ElemType A[], int low, int high) {
+    if (low >= high) return;
+
+    ElemType pivot = A[low];
+    int i = low, j = high;
+    while (i < j) {
+        while (i<j && A[j]>pivot)j--;
+        A[i] = A[j];
+        while (i < j && A[i] <= pivot)i++;
+        A[j] = A[i];
+    }
+    A[i] = pivot;
+
+    QuickSort(A, low, i - 1);
+    QuickSort(A, i + 1, high);
+}
+
+
+int main() {
+    int arr[] = { 22, 34, 3, 32, 82, 55, 89, 50, 37, 5, 64, 35, 9, 70 };
+    int len = (int)sizeof(arr) / sizeof(*arr);
+    BubbleSort(arr, len);
+    int i;
+    for (i = 0; i < len; i++)
+        printf("%d ", arr[i]);
+    return 0;
 }
