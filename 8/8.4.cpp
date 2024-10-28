@@ -37,7 +37,7 @@ void HeadAdjust(ElemType A[], int k, int len) {
     A[k] = A[0];
 }
 
-void BuildMaxHeap(ElemType A[], int len) {
+void BuildMaxHeap(ElemType A[], int len) {//A开始时无序。调整所有的分支节点。叶节点不用调整。
     for (int i = len / 2;i > 0;i--) {
         HeadAdjust(A, i, len);
     }
